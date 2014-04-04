@@ -15,7 +15,7 @@ public class SubstitutionCipher extends MonoAlphabeticCipher{
 	 * @param secretAlphabet der String, auf den das Geheimalphabet gesetzt werden soll
 	 */
 	public void setSecretAlphabet(String secretAlphabet){
-		this.setSecretAlphabet(secretAlphabet);
+		super.setSecretAlphabet(secretAlphabet);
 	}
 	
 }

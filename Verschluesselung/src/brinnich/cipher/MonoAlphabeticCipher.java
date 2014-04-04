@@ -36,14 +36,20 @@ public class MonoAlphabeticCipher implements Cipher{
 	 * @return den fertig verschlüsselten Text
 	 */
 	public String encrypt(String text) {
-		String alphabet = "abcdefghijklmnopqrstuvwxyzäöüß";
+		StringBuffer alphabet = new StringBuffer("abcdefghijklmnopqrstuvwxyzäöüß");
 		
-		text.toLowerCase();
-		for(int i = 0; i < secretAlphabet.length(); i++){
-			text.replace(alphabet.charAt(i), secretAlphabet.charAt(i));
+		text = text.toLowerCase();
+		StringBuffer txt = new StringBuffer(text);
+		
+		for(int i = 0; i < txt.length(); i++){
+			for(int j = 0; j < alphabet.length(); j++){
+				if(txt.charAt(i) == alphabet.charAt(j)){
+					txt.replace(i, i, ""+secretAlphabet.charAt(j));
+				}
+			}
 		}
 		
-		return text;
+		return txt.toString();
 	}
 
 	@Override
@@ -58,8 +64,8 @@ public class MonoAlphabeticCipher implements Cipher{
 		String alphabet = "abcdefghijklmnopqrstuvwxyzäöüß";
 		
 		text.toLowerCase();
-		for(int i = 0; i < secretAlphabet.length(); i++){
-			text.replace(secretAlphabet.charAt(i), alphabet.charAt(i));
+		for(int i = 0; i < secretAlphabet.length() && i < alphabet.length(); i++){
+			text = text.replace(secretAlphabet.charAt(i), alphabet.charAt(i));
 		}
 		
 		return text;
