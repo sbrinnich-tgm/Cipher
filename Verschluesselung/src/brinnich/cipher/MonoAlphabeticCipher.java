@@ -45,6 +45,7 @@ public class MonoAlphabeticCipher implements Cipher{
 			for(int j = 0; j < alphabet.length(); j++){
 				if(txt.charAt(i) == alphabet.charAt(j)){
 					txt.replace(i, i, ""+secretAlphabet.charAt(j));
+					j = alphabet.length();
 				}
 			}
 		}
@@ -70,6 +71,7 @@ public class MonoAlphabeticCipher implements Cipher{
 			for(int j = 0; j < secretAlphabet.length(); j++){
 				if(txt.charAt(i) == secretAlphabet.charAt(j)){
 					txt.replace(i, i, ""+alphabet.charAt(j));
+					j = secretAlphabet.length();
 				}
 			}
 		}
