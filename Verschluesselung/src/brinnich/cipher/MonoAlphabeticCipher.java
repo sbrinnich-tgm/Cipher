@@ -61,14 +61,20 @@ public class MonoAlphabeticCipher implements Cipher{
 	 * @return den fertig entschlüsselten Text
 	 */
 	public String decrypt(String text) {
-		String alphabet = "abcdefghijklmnopqrstuvwxyzäöüß";
+		StringBuffer alphabet = new StringBuffer("abcdefghijklmnopqrstuvwxyzäöüß");
 		
-		text.toLowerCase();
-		for(int i = 0; i < secretAlphabet.length() && i < alphabet.length(); i++){
-			text = text.replace(secretAlphabet.charAt(i), alphabet.charAt(i));
+		text = text.toLowerCase();
+		StringBuffer txt = new StringBuffer(text);
+		
+		for(int i = 0; i < txt.length(); i++){
+			for(int j = 0; j < secretAlphabet.length(); j++){
+				if(txt.charAt(i) == secretAlphabet.charAt(j)){
+					txt.replace(i, i, ""+alphabet.charAt(j));
+				}
+			}
 		}
 		
-		return text;
+		return txt.toString();
 	}
 	
 }
