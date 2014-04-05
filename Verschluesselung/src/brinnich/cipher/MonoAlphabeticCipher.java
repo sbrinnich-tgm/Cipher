@@ -36,21 +36,20 @@ public class MonoAlphabeticCipher implements Cipher{
 	 * @return den fertig verschlüsselten Text
 	 */
 	public String encrypt(String text) {
-		StringBuffer alphabet = new StringBuffer("abcdefghijklmnopqrstuvwxyzäöüß");
+		String alphabet = "abcdefghijklmnopqrstuvwxyzäöüß";
 		
 		text = text.toLowerCase();
-		StringBuffer txt = new StringBuffer(text);
+		String txt = "";
 		
-		for(int i = 0; i < txt.length(); i++){
-			for(int j = 0; j < alphabet.length(); j++){
-				if(txt.charAt(i) == alphabet.charAt(j)){
-					txt.replace(i, i, ""+secretAlphabet.charAt(j));
-					j = alphabet.length();
-				}
+		for(int i = 0; i < text.length(); i++){
+			try{
+				txt += secretAlphabet.charAt(alphabet.indexOf(text.charAt(i)));
+			}catch(Exception e){
+				txt += text.charAt(i);
 			}
 		}
 		
-		return txt.toString();
+		return txt;
 	}
 
 	@Override
@@ -62,21 +61,20 @@ public class MonoAlphabeticCipher implements Cipher{
 	 * @return den fertig entschlüsselten Text
 	 */
 	public String decrypt(String text) {
-		StringBuffer alphabet = new StringBuffer("abcdefghijklmnopqrstuvwxyzäöüß");
+		String alphabet = "abcdefghijklmnopqrstuvwxyzäöüß";
 		
 		text = text.toLowerCase();
-		StringBuffer txt = new StringBuffer(text);
+		String txt = "";
 		
-		for(int i = 0; i < txt.length(); i++){
-			for(int j = 0; j < secretAlphabet.length(); j++){
-				if(txt.charAt(i) == secretAlphabet.charAt(j)){
-					txt.replace(i, i, ""+alphabet.charAt(j));
-					j = secretAlphabet.length();
-				}
+		for(int i = 0; i < text.length(); i++){
+			try{
+				txt += alphabet.charAt(secretAlphabet.indexOf(text.charAt(i)));
+			}catch(Exception e){
+				txt += text.charAt(i);
 			}
 		}
 		
-		return txt.toString();
+		return txt;
 	}
 	
 }

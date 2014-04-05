@@ -17,7 +17,7 @@ public class CipherTest {
 		}
 		
 		cipher.setSecretAlphabet(null);
-		if(cipher.getSecretAlphabet() != null){
+		if(cipher.getSecretAlphabet() == null){
 			throw new RuntimeException("Set/Get Test failed!");
 		}
 	}
@@ -34,9 +34,9 @@ public class CipherTest {
 		if(!cipher.decrypt("Kzlk1").equals("test1")){
 			throw new RuntimeException("Encrypt/Decrypt Test failed!");
 		}
+
 		
-		
-		cipher.setSecretAlphabet(null);
+		cipher = new SubstitutionCipher(null);
 		if(!cipher.encrypt("Test2").equals("test2")){
 			throw new RuntimeException("Encrypt/Decrypt Test failed!");
 		}
@@ -56,7 +56,7 @@ public class CipherTest {
 		}
 		
 		
-		cipher.setSecretAlphabet("zyxwvutsrqponmlkjihgfedcba");
+		cipher = new SubstitutionCipher("zyxwvutsrqponmlkjihgfedcba");
 		if(!cipher.encrypt("Test4").equals("gvhg4")){
 			throw new RuntimeException("Encrypt/Decrypt Test failed!");
 		}
